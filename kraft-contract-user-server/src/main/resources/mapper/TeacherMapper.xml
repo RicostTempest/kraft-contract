@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windsoft.kraft.contract.server.user.mapper.TeacherMapper">
+  <resultMap id="BaseResultMap" type="com.windsoft.kraft.contract.server.user.domain.Teacher">
+    <!--@mbg.generated generated on Tue Mar 09 15:49:27 CST 2021.-->
+    <!--@Table kc_teacher-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="name" jdbcType="CHAR" property="name" />
+    <result column="identification" jdbcType="CHAR" property="identification" />
+    <result column="telephone" jdbcType="CHAR" property="telephone" />
+    <result column="college_id" jdbcType="INTEGER" property="collegeId" />
+    <result column="professional_title_id" jdbcType="BIGINT" property="professionalTitleId" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="number" jdbcType="CHAR" property="number" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Tue Mar 09 15:49:27 CST 2021.-->
+    id, create_time, update_time, `name`, identification, telephone, college_id, professional_title_id, 
+    `password`, `number`
+  </sql>
+</mapper>

@@ -1,0 +1,9 @@
+# Project exclude paths
+/kraft-contract-common/target/
+/kraft-contract-email-server/target/
+/kraft-contract-file-server/target/
+/kraft-contract-gateway/target/
+/kraft-contract-menu-server/target/
+/kraft-contract-mybatis/target/
+/kraft-contract-project-server/target/
+/kraft-contract-user-server/target/
