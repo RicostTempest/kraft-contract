@@ -25,6 +25,10 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
 
+feign:
+  sentinel:
+    enabled: true
+
 mybatis:
   type-aliases-package: com.windsoft.kraft.contract.server.user.domain
   mapper-locations: classpath:mapper/*.xml

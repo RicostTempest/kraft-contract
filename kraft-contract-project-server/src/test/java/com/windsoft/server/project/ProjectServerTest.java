@@ -29,4 +29,10 @@ public class ProjectServerTest {
         projectService.getList(new BaseQuery());
     }
 
+    @Test
+    public void selectById(){
+        List<Project> projects = projectMapper.selectByUserID(1L);
+        projects.forEach(item-> System.out.println(item.getCode()));
+    }
+
 }

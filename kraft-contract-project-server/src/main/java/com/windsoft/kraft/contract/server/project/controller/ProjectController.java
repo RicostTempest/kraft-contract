@@ -37,4 +37,9 @@ public class ProjectController {
         return projectService.deleteByIds(ids);
     }
 
+    @GetMapping("find/{userId}")
+    public JsonResult findProject(@PathVariable("userId") Long id){
+        return projectService.getListByUserID(id);
+    }
+
 }

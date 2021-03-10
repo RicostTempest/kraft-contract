@@ -41,4 +41,9 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectMapper, Project> 
         PageInfo<Project> pageInfo = new PageInfo<Project>(projects);
         return JsonResult.success(pageInfo);
     }
+
+    @Override
+    public JsonResult getListByUserID(Long id){
+        return JsonResult.success(baseMapper.selectByUserID(id));
+    }
 }

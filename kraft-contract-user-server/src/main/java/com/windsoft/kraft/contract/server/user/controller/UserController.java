@@ -3,6 +3,7 @@ package com.windsoft.kraft.contract.server.user.controller;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
+import com.windsoft.kraft.contract.server.user.feign.ProjectServer;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
 import com.windsoft.kraft.contract.server.user.service.AuthService;
 import com.windsoft.kraft.contract.server.user.service.UserService;
@@ -16,6 +17,9 @@ public class UserController {
     private UserService userService;
     @Autowired
     private AuthService authService;
+
+    @Autowired
+    private ProjectServer projectServer;
 
     @GetMapping("find")
     public JsonResult find(UserQuery userQuery){
@@ -62,5 +66,9 @@ public class UserController {
         return authService.authUser(entity, id);
     }
 
+    @GetMapping("find/project/{userId}")
+    public JsonResult findProject(@PathVariable("userId") Long id){
+        return projectServer.findProject(id);
+    }
 
 }

@@ -17,4 +17,19 @@
     <!--@mbg.generated generated on Mon Mar 08 20:14:31 CST 2021.-->
     id, create_time, update_time, code, content_id, progress, funding, `name`
   </sql>
+  <select id="selectByUserID" resultType="com.windsoft.kraft.contract.mybatis.domain.Project">
+    SELECT
+        *
+    FROM
+        kc_project pro
+    WHERE
+        id IN
+        (SELECT
+            p_u.project_id
+        FROM
+            kc_project_user AS p_u
+            LEFT JOIN kc_user ON kc_user.id = p_u.user_id
+        WHERE
+            p_u.user_id = #{id})
+  </select>
 </mapper>
