@@ -3,7 +3,7 @@ package com.windsoft.kraft.contract.server.menu.service.impl;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.mybatis.service.impl.BaseServiceImpl;
-import com.windsoft.kraft.contract.server.menu.domain.Menu;
+import com.windsoft.kraft.contract.mybatis.domain.Menu;
 import com.windsoft.kraft.contract.server.menu.service.MenuService;
 import com.windsoft.kraft.contract.server.menu.mapper.MenuMapper;
 import com.windsoft.kraft.contract.server.menu.query.MenuQuery;

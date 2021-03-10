@@ -1,4 +1,4 @@
-package com.windsoft.kraft.contract.server.user.domain;
+package com.windsoft.kraft.contract.mybatis.domain;
 
 import com.windsoft.kraft.contract.mybatis.entity.BaseEntity;
 import lombok.Data;

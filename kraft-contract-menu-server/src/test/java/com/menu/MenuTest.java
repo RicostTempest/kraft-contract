@@ -1,7 +1,7 @@
 package com.menu;
 
 import com.windsoft.kraft.contract.server.menu.MenuServerApplication;
-import com.windsoft.kraft.contract.server.menu.domain.Menu;
+import com.windsoft.kraft.contract.mybatis.domain.Menu;
 import com.windsoft.kraft.contract.server.menu.service.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

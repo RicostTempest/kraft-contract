@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.mybatis.service.impl.BaseServiceImpl;
-import com.windsoft.kraft.contract.server.project.domain.Project;
+import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.mapper.ProjectMapper;
 import com.windsoft.kraft.contract.server.project.query.ProjectQuery;
 import com.windsoft.kraft.contract.server.project.service.ProjectService;

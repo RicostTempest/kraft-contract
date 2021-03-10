@@ -8,7 +8,7 @@ import com.windsoft.kraft.contract.common.utils.RandomUtils;
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.mybatis.service.impl.BaseServiceImpl;
 import com.windsoft.kraft.contract.server.user.service.UserService;
-import com.windsoft.kraft.contract.server.user.domain.User;
+import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,6 @@
-package com.windsoft.kraft.contract.server.user.domain;
+package com.windsoft.kraft.contract.mybatis.domain;
 
-import com.windsoft.kraft.contract.server.user.entity.InfoEntity;
+import com.windsoft.kraft.contract.mybatis.entity.InfoEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

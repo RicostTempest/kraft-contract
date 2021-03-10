@@ -1,7 +1,7 @@
 package com.windsoft.kraft.contract.server.user.controller;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
-import com.windsoft.kraft.contract.server.user.domain.User;
+import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
 import com.windsoft.kraft.contract.server.user.service.AuthService;

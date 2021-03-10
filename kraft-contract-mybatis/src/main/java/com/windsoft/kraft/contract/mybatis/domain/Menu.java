@@ -1,4 +1,4 @@
-package com.windsoft.kraft.contract.server.menu.domain;
+package com.windsoft.kraft.contract.mybatis.domain;
 
 
 import com.windsoft.kraft.contract.mybatis.entity.BaseEntity;

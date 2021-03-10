@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.server.user.UserServerApplication;
-import com.windsoft.kraft.contract.server.user.domain.User;
+import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
 import com.windsoft.kraft.contract.server.user.service.AuthService;

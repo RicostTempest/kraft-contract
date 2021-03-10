@@ -2,7 +2,7 @@ package com.windsoft.server.project;
 
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.server.project.ProjectServerApplication;
-import com.windsoft.kraft.contract.server.project.domain.Project;
+import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.mapper.ProjectMapper;
 import com.windsoft.kraft.contract.server.project.service.ProjectService;
 import org.junit.Test;

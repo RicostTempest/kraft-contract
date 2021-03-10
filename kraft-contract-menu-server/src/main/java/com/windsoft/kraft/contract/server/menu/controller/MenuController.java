@@ -1,7 +1,7 @@
 package com.windsoft.kraft.contract.server.menu.controller;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
-import com.windsoft.kraft.contract.server.menu.domain.Menu;
+import com.windsoft.kraft.contract.mybatis.domain.Menu;
 import com.windsoft.kraft.contract.server.menu.query.MenuQuery;
 import com.windsoft.kraft.contract.server.menu.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;

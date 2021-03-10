@@ -1,10 +1,11 @@
-package com.windsoft.kraft.contract.server.user.domain;
+package com.windsoft.kraft.contract.mybatis.domain;
 
 import com.windsoft.kraft.contract.mybatis.entity.BaseEntity;
-import java.util.Date;
-import javax.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
 
 @Data
 @EqualsAndHashCode(callSuper=true)

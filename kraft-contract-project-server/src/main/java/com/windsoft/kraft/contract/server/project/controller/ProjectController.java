@@ -1,7 +1,7 @@
 package com.windsoft.kraft.contract.server.project.controller;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
-import com.windsoft.kraft.contract.server.project.domain.Project;
+import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.query.ProjectQuery;
 import com.windsoft.kraft.contract.server.project.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;

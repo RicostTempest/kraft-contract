@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.windsoft.kraft.contract.server.project.mapper.ProjectMapper">
-  <resultMap id="BaseResultMap" type="com.windsoft.kraft.contract.server.project.domain.Project">
+  <resultMap id="BaseResultMap" type="com.windsoft.kraft.contract.mybatis.domain.Project">
     <!--@mbg.generated generated on Mon Mar 08 20:14:31 CST 2021.-->
     <!--@Table kc_project-->
     <id column="id" jdbcType="BIGINT" property="id" />

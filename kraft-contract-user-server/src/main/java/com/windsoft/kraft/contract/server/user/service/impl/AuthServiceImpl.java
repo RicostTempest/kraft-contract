@@ -2,12 +2,12 @@ package com.windsoft.kraft.contract.server.user.service.impl;
 
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
-import com.windsoft.kraft.contract.server.user.domain.Student;
-import com.windsoft.kraft.contract.server.user.domain.Teacher;
-import com.windsoft.kraft.contract.server.user.domain.UserAuthentication;
+import com.windsoft.kraft.contract.mybatis.domain.Student;
+import com.windsoft.kraft.contract.mybatis.domain.Teacher;
+import com.windsoft.kraft.contract.mybatis.domain.UserAuthentication;
 import com.windsoft.kraft.contract.server.user.dto.AuthAccountDto;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
-import com.windsoft.kraft.contract.server.user.entity.InfoEntity;
+import com.windsoft.kraft.contract.mybatis.entity.InfoEntity;
 import com.windsoft.kraft.contract.server.user.mapper.StudentMapper;
 import com.windsoft.kraft.contract.server.user.mapper.TeacherMapper;
 import com.windsoft.kraft.contract.server.user.mapper.UserAuthenticationMapper;
