@@ -71,4 +71,13 @@ public class UserController {
         return projectServer.findProject(id);
     }
 
+    @PostMapping("connect/{userId}/{projectId}")
+    public JsonResult connect(@PathVariable("userId") Long userId,@PathVariable("projectId") Long projectId){
+        return null;
+    }
+
+    @DeleteMapping("disconnect/{userId}/{projectId}")
+    public JsonResult disconnect(@PathVariable("userId") Long userId,@PathVariable("projectId") Long projectId){
+        return null;
+    }
 }
