@@ -19,7 +19,7 @@
   </sql>
   <select id="selectByUserID" resultType="com.windsoft.kraft.contract.mybatis.domain.Project">
     SELECT
-        *
+        id, create_time as createTime, update_time as updateTime, code, content_id as contentId, progress, funding, `name`
     FROM
         kc_project pro
     WHERE
