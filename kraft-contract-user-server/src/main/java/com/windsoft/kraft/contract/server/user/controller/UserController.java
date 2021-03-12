@@ -6,6 +6,7 @@ import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.feign.ProjectServer;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
 import com.windsoft.kraft.contract.server.user.service.AuthService;
+import com.windsoft.kraft.contract.server.user.service.ProjectUserService;
 import com.windsoft.kraft.contract.server.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,9 @@ public class UserController {
 
     @Autowired
     private ProjectServer projectServer;
+
+    @Autowired
+    private ProjectUserService projectUserService;
 
     @GetMapping("find")
     public JsonResult find(UserQuery userQuery){
@@ -73,11 +77,11 @@ public class UserController {
 
     @PostMapping("connect/{userId}/{projectId}")
     public JsonResult connect(@PathVariable("userId") Long userId,@PathVariable("projectId") Long projectId){
-        return null;
+        return projectUserService.add(userId, projectId);
     }
 
     @DeleteMapping("disconnect/{userId}/{projectId}")
     public JsonResult disconnect(@PathVariable("userId") Long userId,@PathVariable("projectId") Long projectId){
-        return null;
+        return projectUserService.delete(userId, projectId);
     }
 }
