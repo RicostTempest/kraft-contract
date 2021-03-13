@@ -18,8 +18,13 @@ public class ProjectUserController {
     private ProjectUserService projectUserService;
 
     @GetMapping("find/project/{userId}")
-    public JsonResult findProject(@PathVariable("userId") Long id){
+    public JsonResult findProjectWithUser(@PathVariable("userId") Long id){
         return projectUserService.findProject(id);
+    }
+
+    @GetMapping("find/user/{projectId}")
+    public JsonResult findUserInProject(@PathVariable("projectId") Long id){
+        return projectUserService.findUser(id);
     }
 
     @PostMapping("connect/{userId}/{projectId}")

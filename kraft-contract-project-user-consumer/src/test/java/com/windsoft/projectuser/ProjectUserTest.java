@@ -2,6 +2,7 @@ package com.windsoft.projectuser;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.consumer.pu.ProjectUserApplication;
+import com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto;
 import com.windsoft.kraft.contract.consumer.pu.fegin.ProjectServer;
 import com.windsoft.kraft.contract.consumer.pu.fegin.UserServer;
 import com.windsoft.kraft.contract.consumer.pu.mapper.ProjectUserMapper;
@@ -48,5 +49,13 @@ public class ProjectUserTest {
         JsonResult jsonResult = userServer.infoUser(1L);
         JsonResult jsonResult1 = projectServer.infoProject(1L);
         System.out.println(1);
+    }
+
+    @Test
+    public void selectMember(){
+        List<UserInfoDto> members = projectUserMapper.selectMemberByProjectId(1L);
+        List<UserInfoDto> advisers = projectUserMapper.selectAdviserByProjectId(1L);
+        members.addAll(advisers);
+        members.forEach(item -> System.out.println(item));
     }
 }

@@ -53,12 +53,13 @@ public class AuthServiceImpl implements AuthService {
         if (infoEntity != null){
             Condition condition = new Condition(UserAuthentication.class);
             Example.Criteria criteria = condition.createCriteria();
-            criteria.andEqualTo("authenticationId",infoEntity.getId());
+            criteria.andEqualTo("userId",id);
             UserAuthentication userAuthentication = userAuthenticationMapper.selectOneByExample(condition);
             if (userAuthentication!=null){
                 return JsonResult.error("账号已被认证");
             }
             if (CommonUtils.password(entity.getPassword()).equals(infoEntity.getPassword())){
+                userAuthentication = new UserAuthentication();
                 userAuthentication.setUserId(id);
                 userAuthentication.setAuthenticationId(infoEntity.getId());
                 userAuthentication.setIsStudent(entity.getIsStudent());
@@ -80,7 +81,7 @@ public class AuthServiceImpl implements AuthService {
         criteria.andEqualTo("userId",id);
         UserAuthentication authentication = userAuthenticationMapper.selectOneByExample(condition);
         if (authentication != null) {
-            Student student = studentMapper.selectByPrimaryKey(authentication.getUserId());
+            Student student = studentMapper.selectByPrimaryKey(authentication.getAuthenticationId());
             accountDto.setAccount(student.getNumber());
             accountDto.setIsStudent(authentication.getIsStudent());
             accountDto.setId(authentication.getId());

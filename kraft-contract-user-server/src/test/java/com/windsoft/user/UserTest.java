@@ -69,7 +69,7 @@ public class UserTest {
 
     @Test
     public void password(){
-        System.out.println(CommonUtils.password("1722110122xs@"));
+        System.out.println(CommonUtils.password("111111"));
     }
 
     @Test

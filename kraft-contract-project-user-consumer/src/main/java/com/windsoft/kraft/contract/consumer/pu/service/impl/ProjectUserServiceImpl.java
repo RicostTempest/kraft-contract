@@ -1,6 +1,7 @@
 package com.windsoft.kraft.contract.consumer.pu.service.impl;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto;
 import com.windsoft.kraft.contract.consumer.pu.mapper.ProjectUserMapper;
 import com.windsoft.kraft.contract.consumer.pu.service.ProjectUserService;
 import com.windsoft.kraft.contract.mybatis.domain.ProjectUser;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 @Service
 public class ProjectUserServiceImpl implements ProjectUserService {
@@ -46,5 +49,12 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     @Override
     public JsonResult findProject(Long id) {
         return JsonResult.success(projectUserMapper.selectByUserID(id));
+    }
+
+    @Override
+    public JsonResult findUser(Long id) {
+        List<UserInfoDto> userInfoDtos = projectUserMapper.selectMemberByProjectId(id);
+        userInfoDtos.addAll(projectUserMapper.selectAdviserByProjectId(id));
+        return JsonResult.success(userInfoDtos);
     }
 }

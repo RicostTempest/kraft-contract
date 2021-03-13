@@ -30,4 +30,42 @@
           WHERE
             p_u.user_id = #{id})
     </select>
+  <select id="selectMemberByProjectId" resultType="com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto">
+    SELECT
+        kc_user.id AS id,
+        kc_student.`name` AS `name`,
+        kc_student.number AS number,
+        kc_user.telephone AS telephone,
+        kc_user.username AS username,
+        permission AS permission
+    FROM
+        kc_project
+        LEFT JOIN kc_project_user p_u ON kc_project.id = p_u.project_id
+        LEFT JOIN kc_user ON p_u.user_id = kc_user.id
+        LEFT JOIN kc_user_authentication u_a ON kc_user.id = u_a.user_id
+        LEFT JOIN kc_student ON u_a.authentication_id = kc_student.id
+    WHERE
+        kc_project.id = #{id}
+        AND is_student = 1
+    ORDER BY permission ASC
+  </select>
+  <select id="selectAdviserByProjectId" resultType="com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto">
+    SELECT
+        kc_user.id AS id,
+        kc_teacher.`name` AS `name`,
+        kc_teacher.number AS number,
+        kc_user.telephone AS telephone,
+        kc_user.username AS username,
+        permission AS permission
+    FROM
+        kc_project
+        LEFT JOIN kc_project_user p_u ON kc_project.id = p_u.project_id
+        LEFT JOIN kc_user ON p_u.user_id = kc_user.id
+        LEFT JOIN kc_user_authentication u_a ON kc_user.id = u_a.user_id
+        LEFT JOIN kc_teacher ON u_a.authentication_id = kc_teacher.id
+    WHERE
+        kc_project.id = #{id}
+        AND is_student = 0
+    ORDER BY permission ASC
+  </select>
 </mapper>
