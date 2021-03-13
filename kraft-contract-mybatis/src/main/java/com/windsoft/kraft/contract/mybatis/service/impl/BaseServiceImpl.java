@@ -18,7 +18,11 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEnt
 
     @Override
     public JsonResult info(Long id) {
-        return JsonResult.success(baseMapper.selectByPrimaryKey(id));
+        T  entity = baseMapper.selectByPrimaryKey(id);
+        if (entity != null){
+            return JsonResult.success(entity);
+        }
+        return JsonResult.error("未查找到数据");
     }
 
     @Override

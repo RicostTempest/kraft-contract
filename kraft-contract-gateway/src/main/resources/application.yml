@@ -53,6 +53,12 @@ spring:
             - Path=/api/project/**
           filters:
             - StripPrefix=1
+        - id: PROJECT-SERVER
+          uri: lb://kraft-contract-project-user-consumer
+          predicates:
+            - Path=/api/pu/**
+          filters:
+            - StripPrefix=1
 
 # 目前无效
 feign:

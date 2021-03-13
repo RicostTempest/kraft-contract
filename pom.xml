@@ -14,6 +14,7 @@
         <module>kraft-contract-file-server</module>
         <module>kraft-contract-mybatis</module>
         <module>kraft-contract-project-server</module>
+        <module>kraft-contract-project-user-consumer</module>
     </modules>
 
     <parent>
