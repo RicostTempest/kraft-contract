@@ -5,12 +5,14 @@ import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.common.utils.RandomUtils;
+import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.mybatis.service.impl.BaseServiceImpl;
-import com.windsoft.kraft.contract.server.user.service.UserService;
-import com.windsoft.kraft.contract.mybatis.domain.User;
+import com.windsoft.kraft.contract.server.user.dto.UserListDto;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
+import com.windsoft.kraft.contract.server.user.query.UserInfoQuery;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
+import com.windsoft.kraft.contract.server.user.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Condition;
@@ -70,4 +72,14 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         }
         return JsonResult.error();
     }
+
+    @Override
+    public JsonResult searchMember(UserInfoQuery query) {
+        PageHelper.startPage(query.getPage(),query.getLimit());
+        List<UserListDto> dtos = baseMapper.selectUserAuth(query);
+        PageInfo<UserListDto> pageInfo = new PageInfo<UserListDto>(dtos);
+        return JsonResult.success(pageInfo);
+    }
+
+
 }

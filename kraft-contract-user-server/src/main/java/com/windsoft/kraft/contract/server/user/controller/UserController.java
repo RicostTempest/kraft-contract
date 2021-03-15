@@ -3,6 +3,7 @@ package com.windsoft.kraft.contract.server.user.controller;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
+import com.windsoft.kraft.contract.server.user.query.UserInfoQuery;
 import com.windsoft.kraft.contract.server.user.query.UserQuery;
 import com.windsoft.kraft.contract.server.user.service.AuthService;
 import com.windsoft.kraft.contract.server.user.service.UserService;
@@ -60,5 +61,10 @@ public class UserController {
     @PostMapping("auth/band/{authId}")
     public JsonResult add(@PathVariable("authId") Long id, @RequestBody AuthEntity entity){
         return authService.authUser(entity, id);
+    }
+
+    @GetMapping("member")
+    public JsonResult search(UserInfoQuery query){
+        return userService.searchMember(query);
     }
 }

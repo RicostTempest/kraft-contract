@@ -5,8 +5,10 @@ import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.server.user.UserServerApplication;
 import com.windsoft.kraft.contract.mybatis.domain.User;
+import com.windsoft.kraft.contract.server.user.dto.UserListDto;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
+import com.windsoft.kraft.contract.server.user.query.UserInfoQuery;
 import com.windsoft.kraft.contract.server.user.service.AuthService;
 import com.windsoft.kraft.contract.server.user.service.UserService;
 import org.junit.Test;
@@ -79,6 +81,17 @@ public class UserTest {
         authEntity.setNumber("1722110122");
         authEntity.setPassword("1722110122xs@");
         authService.authUser(authEntity, 1L);
+    }
+
+    @Test
+    public void userSearchTest(){
+        UserInfoQuery dto = new UserInfoQuery();
+//        dto.setId(1L);
+//        dto.setName("陈");
+        dto.setNumber("15");
+
+        List<UserListDto> dtos = userMapper.selectUserAuth(dto);
+        dtos.forEach(item-> System.out.println(item));
     }
 
 

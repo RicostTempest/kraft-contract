@@ -18,4 +18,33 @@
     <!--@mbg.generated generated on Sat Mar 06 13:35:07 CST 2021.-->
     id, create_time, update_time, telephone, email, `password`, username, nickname, avatar
   </sql>
+    <select id="selectUserAuth" resultType="com.windsoft.kraft.contract.server.user.dto.UserListDto">
+      SELECT
+          kc_user.id AS id,
+          `name` AS `name`,
+          number AS `number`,
+          kc_user.telephone AS telephone,
+          kc_user.username AS username
+      FROM
+          kc_user
+          LEFT JOIN kc_user_authentication u_a ON kc_user.id = u_a.user_id
+          <if test="isStudent == 1">
+            LEFT JOIN kc_student ON u_a.authentication_id = kc_student.id
+          </if>
+          <if test="isStudent == 0">
+            LEFT JOIN kc_teacher ON u_a.authentication_id = kc_teacher.id
+          </if>
+
+      WHERE
+          is_student = #{isStudent}
+          <if test="name != null">
+            AND `name` LIKE "%"#{name}"%"
+          </if>
+          <if test="telephone != null">
+            AND kc_user.telephone LIKE "%"#{telephone}"%"
+          </if>
+          <if test="number != null">
+            AND `number` LIKE "%"#{number}"%"
+          </if>
+    </select>
 </mapper>
