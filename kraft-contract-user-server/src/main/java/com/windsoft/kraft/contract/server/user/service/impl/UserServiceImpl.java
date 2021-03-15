@@ -2,6 +2,7 @@ package com.windsoft.kraft.contract.server.user.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.common.utils.RandomUtils;
@@ -79,6 +80,29 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
         List<UserListDto> dtos = baseMapper.selectUserAuth(query);
         PageInfo<UserListDto> pageInfo = new PageInfo<UserListDto>(dtos);
         return JsonResult.success(pageInfo);
+    }
+
+    @Override
+    public JsonResult searchUser(UserDto userDto) {
+        Condition condition = new Condition(User.class);
+        Example.Criteria criteria = condition.createCriteria();
+        //用户名
+        if (!StringUtils.isEmpty(userDto.getUsername())) {
+            criteria.andLike("username","%"+userDto.getUsername()+"%");
+        }
+        //电话号码
+        if (!StringUtils.isEmpty(userDto.getTelephone())) {
+            criteria.andLike("telephone","%"+userDto.getTelephone()+"%");
+        }
+        //电子邮箱
+        if (!StringUtils.isEmpty(userDto.getEmail())) {
+            criteria.andLike("email","%"+userDto.getEmail()+"%");
+        }
+        User user = baseMapper.selectOneByExample(condition);
+        if (user != null){
+            return JsonResult.success(user);
+        }
+        return JsonResult.error("用户不存在");
     }
 
 

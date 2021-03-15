@@ -1,5 +1,6 @@
 package com.windsoft.kraft.contract.server.user.controller;
 
+import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
@@ -66,5 +67,10 @@ public class UserController {
     @GetMapping("member")
     public JsonResult search(UserInfoQuery query){
         return userService.searchMember(query);
+    }
+
+    @PostMapping("login")
+    public JsonResult getUser(@RequestBody UserDto userDto){
+        return userService.searchUser(userDto);
     }
 }
