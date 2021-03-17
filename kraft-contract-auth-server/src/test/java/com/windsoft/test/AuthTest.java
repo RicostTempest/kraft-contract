@@ -3,7 +3,9 @@ package com.windsoft.test;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.windsoft.kraft.contract.common.dto.UserDto;
+import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.common.utils.RedisUtils;
 import com.windsoft.kraft.contract.server.auth.AuthApplication;
 import com.windsoft.kraft.contract.server.auth.fegin.UserServer;
 import org.junit.Test;
@@ -19,6 +21,8 @@ import java.util.Map;
 public class AuthTest {
     @Autowired
     UserServer userServer;
+    @Autowired
+    private RedisUtils redisUtil;
 
     @Test
     public void authTest(){
@@ -32,5 +36,11 @@ public class AuthTest {
         }else{
             System.out.println("error");
         }
+    }
+
+    @Test
+    public void redisTest(){
+        String code = (String) redisUtil.get("email:code:"+ CommonUtils.md5("3100338155@qq.com"));
+        System.out.println(code);
     }
 }

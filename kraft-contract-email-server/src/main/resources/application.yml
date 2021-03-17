@@ -1,6 +1,12 @@
+server:
+  port: 9500
 spring:
   application:
     name: kraft-contract-email-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:18848
   mail:
     # 设置邮箱主机
     host: smtp.163.com
@@ -25,5 +31,6 @@ spring:
         max-idle: 20
         min-idle: 0
     timeout: 3000
-server:
-  port: 9300
+  msg:
+    limit:
+      captcha: 600

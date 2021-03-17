@@ -2,7 +2,6 @@ package com.windsoft.kraft.contract.server.user.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.common.utils.RandomUtils;
@@ -83,26 +82,34 @@ public class UserServiceImpl extends BaseServiceImpl<UserMapper, User> implement
     }
 
     @Override
-    public JsonResult searchUser(UserDto userDto) {
+    public JsonResult selectUser(User user) {
         Condition condition = new Condition(User.class);
         Example.Criteria criteria = condition.createCriteria();
         //用户名
-        if (!StringUtils.isEmpty(userDto.getUsername())) {
-            criteria.andLike("username","%"+userDto.getUsername()+"%");
+        if (!StringUtils.isEmpty(user.getUsername())) {
+            criteria.andEqualTo("username",user.getUsername());
         }
         //电话号码
-        if (!StringUtils.isEmpty(userDto.getTelephone())) {
-            criteria.andLike("telephone","%"+userDto.getTelephone()+"%");
+        if (!StringUtils.isEmpty(user.getTelephone())) {
+            criteria.andEqualTo("telephone",user.getTelephone());
         }
         //电子邮箱
-        if (!StringUtils.isEmpty(userDto.getEmail())) {
-            criteria.andLike("email","%"+userDto.getEmail()+"%");
+        if (!StringUtils.isEmpty(user.getEmail())) {
+            criteria.andEqualTo("email",user.getEmail());
         }
-        User user = baseMapper.selectOneByExample(condition);
+        user = baseMapper.selectOneByExample(condition);
         if (user != null){
             return JsonResult.success(user);
         }
         return JsonResult.error("用户不存在");
+    }
+
+    @Override
+    public JsonResult changePassword(User user) {
+        if (baseMapper.updatePassword(user)) {
+            return JsonResult.success();
+        }
+        return JsonResult.error("账号不存在");
     }
 
 

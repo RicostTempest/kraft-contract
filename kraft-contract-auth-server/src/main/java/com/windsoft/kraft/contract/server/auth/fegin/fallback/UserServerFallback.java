@@ -12,4 +12,20 @@ public class UserServerFallback implements UserServer {
     public JsonResult login(UserDto userDto) {
         return JsonResult.error(400, "用户服务正在维护");
     }
+
+    @Override
+    public JsonResult reset(Long[] ids) {
+        return JsonResult.error(400, "用户服务正在维护");
+    }
+
+    @Override
+    public JsonResult userExist(String entity) {
+        return JsonResult.error(400, "用户服务正在维护");
+    }
+
+    @Override
+    public JsonResult resetPassword(String entity) {
+        return JsonResult.error(400, "用户服务正在维护");
+    }
+
 }

@@ -220,6 +220,12 @@ public class CommonUtils {
         return pwd;
     }
 
+    public static String md5(String key){
+        String key1 = md5(key.getBytes());
+        String key2 = md5((key1 + "Iklaieoiwklie").getBytes());
+        return key2;
+    }
+
     public static String integerArrayToString(Integer[] ids, String sign){
         StringBuffer buffer = new StringBuffer();
         for (Integer id : ids) {

@@ -17,6 +17,7 @@
         <module>kraft-contract-project-user-consumer</module>
         <module>kraft-contract-auth-server</module>
         <module>kraft-contract-fegin</module>
+        <module>kraft-contract-message-server</module>
     </modules>
 
     <parent>

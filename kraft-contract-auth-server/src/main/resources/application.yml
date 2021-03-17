@@ -9,7 +9,17 @@ spring:
         server-addr: 127.0.0.1:18848
   main:
     allow-bean-definition-overriding: true
-
+  redis:
+    host: localhost
+    password: ''
+    port: 16379
+    jedis:
+      pool:
+        max-wait: 30000
+        max-active: 100
+        max-idle: 20
+        min-idle: 0
+    timeout: 3000
 feign:
   sentinel:
     enabled: true

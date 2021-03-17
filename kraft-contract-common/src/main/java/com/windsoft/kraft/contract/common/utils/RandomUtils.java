@@ -28,6 +28,16 @@ public class RandomUtils {
         return code(buffer,6);
     }
 
+    public static String getCaptcha(){
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(STRING_NUMBER);
+        return code(buffer, 8);
+    }
+
+
+    /**
+    * 生成随机字符串
+    */
     public static String code(StringBuffer buffer, int n){
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {

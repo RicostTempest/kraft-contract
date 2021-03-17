@@ -20,4 +20,5 @@ public class UserDto implements Serializable {
      * 用户名：唯一不可重复不可修改
      */
     private String username;
+    private String code;
 }

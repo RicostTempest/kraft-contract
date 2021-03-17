@@ -1,10 +1,12 @@
 package com.windsoft.user;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
-import com.windsoft.kraft.contract.server.user.UserServerApplication;
 import com.windsoft.kraft.contract.mybatis.domain.User;
+import com.windsoft.kraft.contract.server.user.UserServerApplication;
 import com.windsoft.kraft.contract.server.user.dto.UserListDto;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
@@ -92,6 +94,25 @@ public class UserTest {
 
         List<UserListDto> dtos = userMapper.selectUserAuth(dto);
         dtos.forEach(item-> System.out.println(item));
+    }
+
+    @Test
+    public void jsonTest(){
+        User user = new User();
+        user.setPassword("123456");
+        user.setEmail("RCOST@FOXMAIL.COM");
+        String json = JSON.toJSONString(user);
+        UserDto userDto = JSON.parseObject(json, UserDto.class);
+        System.out.println(userDto);
+    }
+
+
+    @Test
+    public void updatePassword(){
+        User user = new User();
+        user.setPassword("1234");
+        user.setId(2l);
+        System.out.println(userMapper.updatePassword(user));
     }
 
 

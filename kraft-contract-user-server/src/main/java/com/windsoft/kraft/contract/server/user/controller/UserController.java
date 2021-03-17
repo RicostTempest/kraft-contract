@@ -1,5 +1,6 @@
 package com.windsoft.kraft.contract.server.user.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.User;
@@ -71,6 +72,19 @@ public class UserController {
 
     @PostMapping("login")
     public JsonResult getUser(@RequestBody UserDto userDto){
-        return userService.searchUser(userDto);
+        User user = JSON.parseObject(JSON.toJSONString(userDto), User.class);
+        return userService.selectUser(user);
+    }
+
+    @GetMapping("exist")
+    public JsonResult userExist(@RequestParam("user") String entity){
+        User user = JSON.parseObject(entity, User.class);
+        return userService.selectUser(user);
+    }
+    @PostMapping("reset/password")
+    public JsonResult resetPassword(@RequestParam("user") String entity){
+        User user = JSON.parseObject(entity, User.class);
+        System.out.println(user);
+        return userService.update(user);
     }
 }

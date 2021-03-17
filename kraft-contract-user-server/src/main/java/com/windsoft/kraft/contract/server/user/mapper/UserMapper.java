@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface UserMapper extends BaseMapper<User> {
     public List<UserListDto> selectUserAuth(@Param("query") UserInfoQuery query);
+    public boolean updatePassword(@Param("user") User user);
 }
