@@ -6,7 +6,7 @@ import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.common.utils.RedisUtils;
-import com.windsoft.kraft.contract.server.auth.AuthApplication;
+import com.windsoft.kraft.contract.server.auth.AuthServerApplication;
 import com.windsoft.kraft.contract.server.auth.fegin.UserServer;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = AuthApplication.class)
+@SpringBootTest(classes = AuthServerApplication.class)
 public class AuthTest {
     @Autowired
     UserServer userServer;

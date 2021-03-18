@@ -65,6 +65,12 @@ spring:
             - Path=/api/auth/**
           filters:
             - StripPrefix=1
+        - id: MESSAGE-SERVER
+          uri: lb://kraft-contract-message-server
+          predicates:
+            - Path=/api/message/**
+          filters:
+            - StripPrefix=1
 
 # 目前无效
 feign:
