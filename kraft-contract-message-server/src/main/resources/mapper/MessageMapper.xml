@@ -16,4 +16,17 @@
     <!--@mbg.generated generated on Wed Mar 17 18:25:36 CST 2021.-->
     id, create_time, update_time, send_id, accept_id, `status`, content_id
   </sql>
+    <update id="updateStatus">
+        update kc_message set `status`=1 where id=#{id};
+    </update>
+    <select id="selectMessageById" resultType="com.windsoft.kraft.contract.server.message.dto.MessageInfoDto">
+      SELECT
+          m.id,title,mc.create_time createTime, `status`,type,u.id userId,content_id contentId,username
+      FROM
+          kc_message m
+          LEFT JOIN kc_message_content mc ON m.content_id = mc.id
+          LEFT JOIN kc_user u ON m.send_id = u.id
+      WHERE
+          m.accept_id = #{id}
+    </select>
 </mapper>

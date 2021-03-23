@@ -3,9 +3,9 @@ package com.windsoft.kraft.contract.server.project.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.mybatis.query.BaseQuery;
 import com.windsoft.kraft.contract.mybatis.service.impl.BaseServiceImpl;
-import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.mapper.ProjectMapper;
 import com.windsoft.kraft.contract.server.project.query.ProjectQuery;
 import com.windsoft.kraft.contract.server.project.service.ProjectService;
@@ -45,5 +45,24 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectMapper, Project> 
     @Override
     public JsonResult getListByUserID(Long id){
         return JsonResult.success(baseMapper.selectByUserID(id));
+    }
+
+    @Override
+    public JsonResult selectProject(Project project) {
+        Condition condition = new Condition(Project.class);
+        Example.Criteria criteria = condition.createCriteria();
+        //项目编号
+        if (!StringUtils.isEmpty(project.getCode())) {
+            criteria.andEqualTo("code",project.getCode());
+        }
+        //项目名称
+        if (!StringUtils.isEmpty(project.getName())) {
+            criteria.andEqualTo("name",project.getName());
+        }
+        project = baseMapper.selectOneByExample(condition);
+        if (project != null){
+            return JsonResult.success(project);
+        }
+        return JsonResult.error("项目不存在");
     }
 }

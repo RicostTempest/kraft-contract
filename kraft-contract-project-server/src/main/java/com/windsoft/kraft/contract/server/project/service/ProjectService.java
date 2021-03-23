@@ -6,4 +6,6 @@ import com.windsoft.kraft.contract.mybatis.service.BaseService;
 
 public interface ProjectService extends BaseService<Project> {
     public JsonResult getListByUserID(Long id);
+
+    public JsonResult selectProject(Project project);
 }

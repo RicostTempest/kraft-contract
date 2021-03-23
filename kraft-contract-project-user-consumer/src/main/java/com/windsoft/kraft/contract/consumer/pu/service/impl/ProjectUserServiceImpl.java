@@ -55,6 +55,9 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     public JsonResult findUser(Long id) {
         List<UserInfoDto> userInfoDtos = projectUserMapper.selectMemberByProjectId(id);
         userInfoDtos.addAll(projectUserMapper.selectAdviserByProjectId(id));
+        if (userInfoDtos.size() == 0) {
+            return JsonResult.error("项目中没有成员");
+        }
         return JsonResult.success(userInfoDtos);
     }
 }

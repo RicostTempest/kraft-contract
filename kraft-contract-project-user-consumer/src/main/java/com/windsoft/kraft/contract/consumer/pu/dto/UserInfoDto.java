@@ -28,5 +28,5 @@ public class UserInfoDto {
      * 在当前项目中的权限
      1：项目负责人，2：指导老师，3：项目成员
      */
-    private String permission;
+    private int permission;
 }

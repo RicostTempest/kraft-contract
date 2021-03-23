@@ -15,4 +15,9 @@ public class ProjectServerFallback implements ProjectServer {
     public JsonResult infoProject(Long id) {
         return JsonResult.error(400, "用户服务正在维护");
     }
+
+    @Override
+    public JsonResult projectExist(String entity) {
+        return JsonResult.error(400, "用户服务正在维护");
+    }
 }

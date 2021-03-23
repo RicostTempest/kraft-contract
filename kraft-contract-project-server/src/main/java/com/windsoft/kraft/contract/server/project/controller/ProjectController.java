@@ -1,5 +1,6 @@
 package com.windsoft.kraft.contract.server.project.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.query.ProjectQuery;
@@ -45,6 +46,12 @@ public class ProjectController {
     @GetMapping("find/{userId}")
     public JsonResult findProject(@PathVariable("userId") Long id){
         return projectService.getListByUserID(id);
+    }
+
+    @GetMapping("exist")
+    public JsonResult projectExist(@RequestParam("project") String entity){
+        Project project = JSON.parseObject(entity, Project.class);
+        return projectService.selectProject(project);
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Primary
 @FeignClient(value = "kraft-contract-project-server", fallback = ProjectServerFallback.class)
@@ -15,4 +16,7 @@ public interface ProjectServer {
 
     @GetMapping("/project/info/{projectId}")
     public JsonResult infoProject(@PathVariable("projectId")Long id);
+
+    @GetMapping("/project/exist")
+    public JsonResult projectExist(@RequestParam("project") String entity);
 }
