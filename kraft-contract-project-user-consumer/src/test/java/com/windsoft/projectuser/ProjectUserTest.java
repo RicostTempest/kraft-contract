@@ -100,4 +100,15 @@ public class ProjectUserTest {
             System.out.println(json);
         }
     }
+
+    @Test
+    public void projectInf(){
+        projectUserMapper.selectProjectCardInfo().forEach(item ->{
+            System.out.println(item);
+        });
+    }
+    @Test
+    public void projectInfservice(){
+        System.out.println(projectUserService.getProjectList(1L).getData());
+    }
 }

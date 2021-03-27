@@ -1,9 +1,11 @@
 package com.windsoft.kraft.contract.consumer.pu.service.impl;
 
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.consumer.pu.dto.ProjectCardDto;
 import com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto;
 import com.windsoft.kraft.contract.consumer.pu.mapper.ProjectUserMapper;
 import com.windsoft.kraft.contract.consumer.pu.service.ProjectUserService;
+import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.mybatis.domain.ProjectUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,7 @@ public class ProjectUserServiceImpl implements ProjectUserService {
     private ProjectUserMapper projectUserMapper;
 
     @Override
-    public JsonResult add(Long userId, Long projectId) {
+    public JsonResult add(Long userId, Long projectId,Byte permission) {
         Condition condition = new Condition(ProjectUser.class);
         Example.Criteria criteria = condition.createCriteria();
         criteria.andEqualTo("projectId", projectId)
@@ -29,6 +31,7 @@ public class ProjectUserServiceImpl implements ProjectUserService {
             pu = new ProjectUser();
             pu.setUserId(userId);
             pu.setProjectId(projectId);
+            pu.setPermission(permission);
             projectUserMapper.insert(pu);
             return JsonResult.success();
         }else {
@@ -59,5 +62,20 @@ public class ProjectUserServiceImpl implements ProjectUserService {
             return JsonResult.error("项目中没有成员");
         }
         return JsonResult.success(userInfoDtos);
+    }
+
+    @Override
+    public JsonResult getProjectList(Long id) {
+        List<ProjectCardDto> projectCardDtos = projectUserMapper.selectProjectCardInfo();
+        List<Project> projects = projectUserMapper.selectByUserID(id);
+        projectCardDtos.forEach(card -> {
+            card.setExist(0);
+            projects.forEach(project -> {
+                if (project.getId().equals(card.getId())){
+                    card.setExist(1);
+                }
+            });
+        });
+        return JsonResult.success(projectCardDtos);
     }
 }

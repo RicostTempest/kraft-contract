@@ -68,4 +68,23 @@
         AND is_student = 0
     ORDER BY permission ASC
   </select>
+    <select id="selectProjectCardInfo" resultType="com.windsoft.kraft.contract.consumer.pu.dto.ProjectCardDto">
+        SELECT
+            p.id,
+            p.name AS name ,
+            CODE,
+            progress,
+            funding,
+            u.id AS leaderId,
+            s.`name` AS leaderName
+        FROM
+            kc_project p
+            RIGHT JOIN kc_project_user p_u ON p.id = p_u.project_id
+            LEFT JOIN kc_user u ON u.id = p_u.user_id
+            LEFT JOIN kc_user_authentication a_u ON u.id = a_u.user_id
+            LEFT JOIN kc_student s ON a_u.authentication_id = s.id
+        WHERE
+            is_student = 1
+            AND permission = 1
+    </select>
 </mapper>

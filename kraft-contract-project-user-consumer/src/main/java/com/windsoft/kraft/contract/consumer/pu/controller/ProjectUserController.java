@@ -1,8 +1,11 @@
 package com.windsoft.kraft.contract.consumer.pu.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.consumer.pu.dto.ProjectDto;
 import com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto;
+import com.windsoft.kraft.contract.consumer.pu.fegin.FileServer;
 import com.windsoft.kraft.contract.consumer.pu.fegin.ProjectServer;
 import com.windsoft.kraft.contract.consumer.pu.fegin.UserServer;
 import com.windsoft.kraft.contract.consumer.pu.service.ProjectUserService;
@@ -22,6 +25,8 @@ public class ProjectUserController {
     @Autowired
     private UserServer userServer;
     @Autowired
+    private FileServer fileServer;
+    @Autowired
     private ProjectUserService projectUserService;
 
     @GetMapping("find/project/{userId}")
@@ -39,7 +44,7 @@ public class ProjectUserController {
         int userCode = userServer.infoUser(userId).getCode();
         int projectCode = projectServer.infoProject(projectId).getCode();
         if (userCode == 0 && projectCode == 0){
-            return projectUserService.add(userId, projectId);
+            return projectUserService.add(userId, projectId, (byte) 3);
         }else if (userCode == 400 || projectCode == 400){
             return JsonResult.error("服务正在维护");
         }
@@ -53,6 +58,7 @@ public class ProjectUserController {
 
     @GetMapping("permission/{userId}")
     public JsonResult permissionUserInProject(@PathVariable("userId") Long id, @RequestParam("project")String entity){
+
         JsonResult result = projectServer.projectExist(entity);
         if (result.getCode() != 0) {
             return result;
@@ -75,5 +81,37 @@ public class ProjectUserController {
         }
         data.put("entities",infoDtos);
         return JsonResult.success(data,"权限确认完成");
+    }
+
+    @PostMapping("project/create/{userId}")
+    public JsonResult createProject(@PathVariable("userId") Long id, @RequestBody String json){
+        Map map = (Map) JSONObject.parse(json);
+        ProjectDto projectDto = JSON.parseObject((String) map.get("json"), ProjectDto.class);
+        Project project = new Project();
+        project.setFunding(0L);
+        project.setName(projectDto.getName());
+        project.setProgress(0);
+        JsonResult result = projectServer.add(project);
+        if(result.getCode() == 0 ){
+            project = JSON.parseObject(JSON.toJSONString(result.getData()), Project.class);
+            projectUserService.add(id,project.getId(), (byte) 1);
+            for (int i = 0; i < projectDto.getAdviser().length; i++) {
+                projectUserService.add(projectDto.getAdviser()[i], project.getId(), (byte) 2);
+            }
+            for (int i = 0; i < projectDto.getMembers().length; i++) {
+                projectUserService.add(projectDto.getMembers()[i],project.getId(), (byte) 3);
+            }
+            String s = JSON.toJSONString(projectDto.getFiles());
+            result = fileServer.resourceSave(id,s);
+            if(result.getCode() == 0){
+                return JsonResult.success();
+            }
+        }
+        return result;
+    }
+
+    @GetMapping("project/list/{userId}")
+    public JsonResult projectList(@PathVariable("userId") Long id){
+        return projectUserService.getProjectList(id);
     }
 }

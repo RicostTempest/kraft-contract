@@ -14,9 +14,11 @@ public class FileServiceImpl implements FileService {
     private String host;
     @Value("${upload.res.avatar}")
     String avatar;
+    @Value("${upload.res.doc}")
+    String doc;
 
     @Override
-    public JsonResult fileUpload(MultipartFile file) {
+    public JsonResult imgUpload(MultipartFile file) {
         String msg = DFSFileUtils.uploadFile(file, host, avatar);
         if ("error".equals(msg)){
             return JsonResult.error();
@@ -30,5 +32,14 @@ public class FileServiceImpl implements FileService {
             return JsonResult.success();
         }
         return JsonResult.error();
+    }
+
+    @Override
+    public JsonResult docUpload(MultipartFile file){
+        String msg = DFSFileUtils.uploadFile(file, host, doc);
+        if ("error".equals(msg)){
+            return JsonResult.error();
+        }
+        return JsonResult.success(msg);
     }
 }

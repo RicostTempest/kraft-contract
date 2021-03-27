@@ -18,6 +18,7 @@
         <module>kraft-contract-auth-server</module>
         <module>kraft-contract-fegin</module>
         <module>kraft-contract-message-server</module>
+        <module>kraft-contract-flow-server</module>
     </modules>
 
     <parent>

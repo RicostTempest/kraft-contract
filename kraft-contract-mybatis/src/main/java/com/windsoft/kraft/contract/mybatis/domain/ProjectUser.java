@@ -27,6 +27,6 @@ public class ProjectUser extends BaseEntity {
      * 在当前项目中的权限
 1：项目负责人，2：指导老师，3：项目成员
      */
-    @Column(name = "permission", insertable = false)
+    @Column(name = "permission")
     private Byte permission;
 }

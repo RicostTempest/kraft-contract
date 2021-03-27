@@ -70,6 +70,13 @@ public class UserController {
         return userService.searchMember(query);
     }
 
+    @GetMapping("info/{number}/{isStudent}")
+    public JsonResult infoByAuth(UserInfoQuery query){
+        query.setPage(1);
+        query.setLimit(10);
+        return userService.searchMember(query);
+    }
+
     @PostMapping("login")
     public JsonResult getUser(@RequestBody UserDto userDto){
         User user = JSON.parseObject(JSON.toJSONString(userDto), User.class);

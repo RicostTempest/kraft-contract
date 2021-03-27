@@ -31,7 +31,7 @@ public abstract class BaseServiceImpl<M extends BaseMapper<T>, T extends BaseEnt
             entity.setCreateTime(new Date());
             entity.setUpdateTime(new Date());
             baseMapper.insert(entity);
-            return JsonResult.success();
+            return JsonResult.success(entity);
         }
         return JsonResult.error("对象为空");
     }
