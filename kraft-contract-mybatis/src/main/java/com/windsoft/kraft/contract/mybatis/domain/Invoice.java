@@ -19,8 +19,8 @@ public class Invoice extends BaseEntity {
     private String name;
 
     @Column(name = "invoice_date")
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date invoiceDate;
 
     @Column(name = "resource_id")
