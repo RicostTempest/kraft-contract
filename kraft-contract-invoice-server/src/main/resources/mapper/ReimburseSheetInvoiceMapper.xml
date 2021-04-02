@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.windsoft.kraft.contract.server.invoice.mapper.ReimburseSheetInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.windsoft.kraft.contract.mybatis.domain.ReimburseSheetInvoice">
+    <!--@mbg.generated generated on Fri Apr 02 17:52:39 CST 2021.-->
+    <!--@Table kc_reimburse_sheet_invoice-->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="reimburse_sheet_id" jdbcType="BIGINT" property="reimburseSheetId" />
+    <result column="invoice_id" jdbcType="BIGINT" property="invoiceId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Fri Apr 02 17:52:39 CST 2021.-->
+    id, create_time, update_time, reimburse_sheet_id, invoice_id
+  </sql>
+    <select id="selectInvoiceBySheetId" resultType="com.windsoft.kraft.contract.mybatis.domain.Invoice">
+      SELECT
+          i.id as id,`name`,invoice_date as invoiceDate,invoice_code as invoiceCode, invoice_number as invoiceNumber,resource_id as resourceId, user_id as userId, is_reimburse as isReimburse, `value`
+      FROM
+          kc_reimburse_sheet_invoice rsi
+          LEFT JOIN kc_invoice i ON rsi.invoice_id = i.id
+      WHERE
+          reimburse_sheet_id = #{id}
+    </select>
+</mapper>

@@ -31,7 +31,6 @@ public class FlowFeignTest {
 
     @Test
     public void testGetList(){
-        JsonResult result = flowService.getTaskList("16");
-        System.out.println(result.getData());
+
     }
 }

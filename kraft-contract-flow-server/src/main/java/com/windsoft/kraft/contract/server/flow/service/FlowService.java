@@ -9,7 +9,7 @@ public interface FlowService {
 
     JsonResult completeTask(String taskId, String userId, String comment, Boolean accept);
 
-    JsonResult getTaskList(String userId);
+    JsonResult getTaskList(String userId, String processName);
 
     JsonResult getBusinessKey(String taskId);
 

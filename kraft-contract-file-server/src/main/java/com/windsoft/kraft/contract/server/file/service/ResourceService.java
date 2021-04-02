@@ -9,4 +9,6 @@ public interface ResourceService {
     JsonResult addResources(Long projectId, List<Resource> resources);
 
     JsonResult getResources(Long id);
+
+    JsonResult getResourcesById(Long id);
 }

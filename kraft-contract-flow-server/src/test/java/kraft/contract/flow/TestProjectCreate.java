@@ -61,8 +61,14 @@ public class TestProjectCreate {
     @Test
     public void personTaskSearch(){
         List<Task> tasks = taskService.createTaskQuery()
-                .processDefinitionKey("projectCreated")
+                .processDefinitionKey("projectInvoice")
+                .taskAssignee("15")
                 .list();
+        List<Task> tasks1 = taskService.createTaskQuery()
+                .processDefinitionKey("projectInvoice")
+                .taskCandidateUser("15")
+                .list();
+        tasks.addAll(tasks1);
         System.out.println(tasks.size());
         tasks.forEach(task->{
             System.out.println("流程实例ID:" + task.getProcessInstanceId());

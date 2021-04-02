@@ -19,6 +19,7 @@
         <module>kraft-contract-fegin</module>
         <module>kraft-contract-message-server</module>
         <module>kraft-contract-flow-server</module>
+        <module>kraft-contract-invoice-server</module>
     </modules>
 
     <parent>

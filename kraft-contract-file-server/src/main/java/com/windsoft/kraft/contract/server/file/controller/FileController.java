@@ -47,6 +47,11 @@ public class FileController {
         return resourceService.getResources(id);
     }
 
+    @GetMapping("resource/{resourceId}")
+    public JsonResult getResource(@PathVariable("resourceId") Long id){
+        return resourceService.getResourcesById(id);
+    }
+
     @PostMapping("upload/pdf")
     public JsonResult pdfInfoGet(@RequestParam("file") MultipartFile file){
         return fileService.getPDFInfo(file);

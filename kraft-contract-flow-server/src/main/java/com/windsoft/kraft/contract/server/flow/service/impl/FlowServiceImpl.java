@@ -87,12 +87,14 @@ public class FlowServiceImpl implements FlowService {
     }
 
     @Override
-    public JsonResult getTaskList(String userId) {
+    public JsonResult getTaskList(String userId, String processName) {
         List<TaskDto> taskDtos = new ArrayList<>();
         List<Task> tasks = taskService.createTaskQuery()
+                .processDefinitionKey(processName)
                 .taskAssignee(userId)
                 .list();
         List<Task> tasks1 = taskService.createTaskQuery()
+                .processDefinitionKey(processName)
                 .taskCandidateUser(userId)
                 .list();
         tasks.addAll(tasks1);

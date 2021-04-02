@@ -5,11 +5,14 @@ import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.common.HybridBinarizer;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.Invoice;
+import com.windsoft.kraft.contract.mybatis.domain.Resource;
+import com.windsoft.kraft.contract.server.file.mapper.ResourceMapper;
 import com.windsoft.kraft.contract.server.file.service.FileService;
 import com.windsoft.kraft.contract.server.file.utils.DFSFileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPageTree;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +35,9 @@ public class FileServiceImpl implements FileService {
     String avatar;
     @Value("${upload.res.doc}")
     String doc;
+
+    @Autowired
+    ResourceMapper resourceMapper;
 
     @Override
     public JsonResult imgUpload(MultipartFile file) {
@@ -100,6 +106,12 @@ public class FileServiceImpl implements FileService {
         if ("error".equals(msg)){
             return JsonResult.error();
         }
+        Resource resource = new Resource();
+        resource.setName(file.getOriginalFilename());
+        resource.setUrl(msg);
+        resource.setResourceTypeId(1L);
+        resourceMapper.insert(resource);
+        invoice.setResourceId(resource.getId());
         Map<String,Object> map = new HashMap<>();
         map.put("path", msg);
         map.put("invoice", invoice);

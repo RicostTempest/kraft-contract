@@ -35,4 +35,9 @@ public class ResourceServiceImpl implements ResourceService {
     public JsonResult getResources(Long id) {
         return JsonResult.success(resourceMapper.selectByProjectId(id));
     }
+
+    @Override
+    public JsonResult getResourcesById(Long id) {
+        return JsonResult.success(resourceMapper.selectByPrimaryKey(id));
+    }
 }

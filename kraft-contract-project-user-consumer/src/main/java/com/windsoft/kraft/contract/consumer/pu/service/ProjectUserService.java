@@ -8,4 +8,6 @@ public interface ProjectUserService {
     public JsonResult findProject(Long id);
     public JsonResult findUser(Long id);
     public JsonResult getProjectList(Long id);
+
+    JsonResult getPermission(Long userId, Long projectId);
 }

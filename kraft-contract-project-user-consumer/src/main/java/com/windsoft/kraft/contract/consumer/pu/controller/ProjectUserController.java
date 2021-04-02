@@ -87,6 +87,11 @@ public class ProjectUserController {
         return JsonResult.success(data,"权限确认完成");
     }
 
+    @GetMapping("permission/{userId}/{projectId}")
+    public JsonResult permissionUserInProject(@PathVariable("userId") Long userId,@PathVariable("projectId") Long projectId){
+        return projectUserService.getPermission(userId,projectId);
+    }
+
     @PostMapping("project/create/{userId}")
     public JsonResult createProject(@PathVariable("userId") Long id, @RequestBody String json){
         Map map = (Map) JSONObject.parse(json);

@@ -51,9 +51,14 @@ public class FlowController {
         return flowService.startProcess(assigneeMap, invoiceId.toString(),"projectInvoice");
     }
 
-    @GetMapping("{userId}/list")
-    public JsonResult findTaskList(@PathVariable("userId") Long userId){
-        return flowService.getTaskList(userId.toString());
+    @GetMapping("create/{userId}/list")
+    public JsonResult findCreateTask(@PathVariable("userId") Long userId){
+        return flowService.getTaskList(userId.toString(),"projectCreated");
+    }
+
+    @GetMapping("invoice/{userId}/list")
+    public JsonResult findInvoiceTask(@PathVariable("userId") Long userId){
+        return flowService.getTaskList(userId.toString(),"projectInvoice");
     }
 
     /**

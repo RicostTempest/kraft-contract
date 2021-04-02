@@ -78,4 +78,17 @@ public class ProjectUserServiceImpl implements ProjectUserService {
         });
         return JsonResult.success(projectCardDtos);
     }
+
+    @Override
+    public JsonResult getPermission(Long userId, Long projectId){
+        Condition condition = new Condition(ProjectUser.class);
+        Example.Criteria criteria = condition.createCriteria();
+        criteria.andEqualTo("projectId", projectId)
+                .andEqualTo("userId", userId);
+        ProjectUser projectUser = projectUserMapper.selectOneByExample(condition);
+        if (projectUser != null){
+            return JsonResult.success(projectUser.getPermission());
+        }
+        return JsonResult.success("用户不在当前项目中");
+    }
 }
