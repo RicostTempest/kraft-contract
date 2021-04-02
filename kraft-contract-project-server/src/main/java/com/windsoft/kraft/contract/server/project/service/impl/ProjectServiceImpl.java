@@ -65,4 +65,10 @@ public class ProjectServiceImpl extends BaseServiceImpl<ProjectMapper, Project> 
         }
         return JsonResult.error("项目不存在");
     }
+
+    @Override
+    public JsonResult passProject(Project project) {
+        baseMapper.updateProjcetInfo(project);
+        return JsonResult.success();
+    }
 }

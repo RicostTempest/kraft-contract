@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ResourceService {
     JsonResult addResources(Long projectId, List<Resource> resources);
+
+    JsonResult getResources(Long id);
 }

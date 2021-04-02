@@ -2,6 +2,7 @@ package com.windsoft.kraft.contract.server.user.mapper;
 
 import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.mybatis.mapper.BaseMapper;
+import com.windsoft.kraft.contract.server.user.dto.AccountDto;
 import com.windsoft.kraft.contract.server.user.dto.UserListDto;
 import com.windsoft.kraft.contract.server.user.query.UserInfoQuery;
 import io.lettuce.core.dynamic.annotation.Param;

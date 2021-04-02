@@ -94,4 +94,9 @@ public class UserController {
         System.out.println(user);
         return userService.update(user);
     }
+
+    @GetMapping("account/{userId}/detail")
+    public JsonResult accountDetail(@PathVariable("userId") Long id){
+        return authService.getAccountDetail(id);
+    }
 }

@@ -8,4 +8,6 @@ public interface ProjectService extends BaseService<Project> {
     public JsonResult getListByUserID(Long id);
 
     public JsonResult selectProject(Project project);
+
+    public JsonResult passProject(Project project);
 }

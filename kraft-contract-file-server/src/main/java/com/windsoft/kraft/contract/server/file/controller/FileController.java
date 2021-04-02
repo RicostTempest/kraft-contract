@@ -42,4 +42,14 @@ public class FileController {
         return resourceService.addResources(id, resources);
     }
 
+    @GetMapping("resources/{projectId}")
+    public JsonResult getResources(@PathVariable("projectId") Long id){
+        return resourceService.getResources(id);
+    }
+
+    @PostMapping("upload/pdf")
+    public JsonResult pdfInfoGet(@RequestParam("file") MultipartFile file){
+        return fileService.getPDFInfo(file);
+    }
+
 }

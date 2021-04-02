@@ -22,6 +22,13 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+mybatis:
+  type-aliases-package: com.windsoft.kraft.contract.mybatis.domain
+  mapper-locations: classpath:mapper/*.xml
 upload:
   host: http://192.168.2.199:18080
   res:

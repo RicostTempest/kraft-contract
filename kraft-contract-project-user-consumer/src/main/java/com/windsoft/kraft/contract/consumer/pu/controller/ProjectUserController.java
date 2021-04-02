@@ -2,10 +2,12 @@ package com.windsoft.kraft.contract.consumer.pu.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.consumer.pu.dto.ProjectDto;
 import com.windsoft.kraft.contract.consumer.pu.dto.UserInfoDto;
 import com.windsoft.kraft.contract.consumer.pu.fegin.FileServer;
+import com.windsoft.kraft.contract.consumer.pu.fegin.FlowServer;
 import com.windsoft.kraft.contract.consumer.pu.fegin.ProjectServer;
 import com.windsoft.kraft.contract.consumer.pu.fegin.UserServer;
 import com.windsoft.kraft.contract.consumer.pu.service.ProjectUserService;
@@ -26,6 +28,8 @@ public class ProjectUserController {
     private UserServer userServer;
     @Autowired
     private FileServer fileServer;
+    @Autowired
+    private FlowServer flowServer;
     @Autowired
     private ProjectUserService projectUserService;
 
@@ -102,8 +106,14 @@ public class ProjectUserController {
                 projectUserService.add(projectDto.getMembers()[i],project.getId(), (byte) 3);
             }
             String s = JSON.toJSONString(projectDto.getFiles());
-            result = fileServer.resourceSave(id,s);
+            result = fileServer.resourceSave(project.getId(),s);
             if(result.getCode() == 0){
+                Map<String,Object> assigneeMap = new HashMap<>();
+                assigneeMap.put("leader",id.toString());
+                assigneeMap.put("adviser", CommonUtils.longArrayToString(projectDto.getAdviser(),","));
+                assigneeMap.put("college","17");
+                assigneeMap.put("school","18");
+                flowServer.createProjectFlow(project.getId(),JSON.toJSONString(assigneeMap));
                 return JsonResult.success();
             }
         }

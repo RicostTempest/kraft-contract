@@ -15,4 +15,17 @@
     <!--@mbg.generated generated on Thu Mar 25 20:14:12 CST 2021.-->
     id, create_time, update_time, url, resource_type_id, `name`
   </sql>
+    <select id="selectByProjectId" resultType="com.windsoft.kraft.contract.mybatis.domain.Resource">
+      SELECT
+          r.id AS id,
+          r.create_time AS createTime,
+          r.update_time AS updateTime,
+          `name`,
+          url
+      FROM
+          kc_resource r
+          RIGHT JOIN kc_project_resource p_r ON r.id = p_r.resource_id
+      WHERE
+          project_id = #{id}
+    </select>
 </mapper>

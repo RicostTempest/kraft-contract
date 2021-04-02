@@ -15,4 +15,24 @@
     <!--@mbg.generated generated on Tue Mar 09 15:26:44 CST 2021.-->
     id, create_time, update_time, user_id, authentication_id, is_student
   </sql>
+  <select id="selectAccount" resultType="com.windsoft.kraft.contract.server.user.dto.AccountDto">
+    SELECT
+    kc_user.id AS id,
+    `name` AS `name`,
+    number AS `number`,
+    kc_user.telephone AS telephone
+    FROM
+    kc_user
+    LEFT JOIN kc_user_authentication u_a ON kc_user.id = u_a.user_id
+    <if test="param2 == 1">
+      LEFT JOIN kc_student ON u_a.authentication_id = kc_student.id
+    </if>
+    <if test="param2 == 0">
+      LEFT JOIN kc_teacher ON u_a.authentication_id = kc_teacher.id
+    </if>
+
+    WHERE
+    is_student = #{param2}
+    AND kc_user.id = #{param1}
+  </select>
 </mapper>

@@ -71,6 +71,12 @@ spring:
             - Path=/api/message/**
           filters:
             - StripPrefix=1
+        - id: FLOW-SERVER
+          uri: lb://kraft-contract-flow-server
+          predicates:
+            - Path=/api/flow/**
+          filters:
+            - StripPrefix=1
 
 # 目前无效
 feign:

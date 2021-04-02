@@ -2,6 +2,7 @@ package com.windsoft.kraft.contract.server.project.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.common.utils.RandomUtils;
 import com.windsoft.kraft.contract.mybatis.domain.Project;
 import com.windsoft.kraft.contract.server.project.query.ProjectQuery;
 import com.windsoft.kraft.contract.server.project.service.ProjectService;
@@ -52,6 +53,13 @@ public class ProjectController {
     public JsonResult projectExist(@RequestParam("project") String entity){
         Project project = JSON.parseObject(entity, Project.class);
         return projectService.selectProject(project);
+    }
+
+    @PostMapping("init/{projectId}")
+    public JsonResult initProject(@PathVariable("projectId") Long id,@RequestBody Project entity){
+        entity.setProgress(1);
+        entity.setCode(RandomUtils.getNumber(12));
+        return projectService.passProject(entity);
     }
 
 }

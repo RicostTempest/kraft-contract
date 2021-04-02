@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ProjectMapper extends BaseMapper<Project> {
     public List<Project> selectByUserID(Long id);
+    public void updateProjcetInfo(Project project);
 }

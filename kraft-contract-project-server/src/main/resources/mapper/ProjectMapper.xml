@@ -17,7 +17,15 @@
     <!--@mbg.generated generated on Mon Mar 08 20:14:31 CST 2021.-->
     id, create_time, update_time, code, content_id, progress, funding, `name`
   </sql>
-  <select id="selectByUserID" resultType="com.windsoft.kraft.contract.mybatis.domain.Project">
+    <update id="updateProjcetInfo">
+        UPDATE kc_project
+        SET funding = #{funding},
+        progress = #{progress},
+        `code` = #{code}
+        WHERE
+            id = #{id}
+    </update>
+    <select id="selectByUserID" resultType="com.windsoft.kraft.contract.mybatis.domain.Project">
     SELECT
         id, create_time as createTime, update_time as updateTime, code, content_id as contentId, progress, funding, `name`
     FROM

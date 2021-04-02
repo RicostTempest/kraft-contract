@@ -34,6 +34,12 @@ public class RandomUtils {
         return code(buffer, 8);
     }
 
+    public static String getNumber(int n){
+        StringBuffer buffer = new StringBuffer();
+        buffer.append(STRING_NUMBER);
+        return code(buffer, 12);
+    }
+
 
     /**
     * 生成随机字符串

@@ -7,4 +7,5 @@ public interface AuthService {
     public JsonResult authUser(AuthEntity entity, Long id);
     public JsonResult getAccount(Long id);
     public JsonResult freeBand(Long id);
+    public JsonResult getAccountDetail(Long id);
 }

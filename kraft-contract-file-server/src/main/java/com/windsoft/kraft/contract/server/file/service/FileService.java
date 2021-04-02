@@ -9,4 +9,5 @@ public interface FileService {
     public JsonResult fileDelete(String path);
 
     JsonResult docUpload(MultipartFile file);
+    JsonResult getPDFInfo(MultipartFile file);
 }

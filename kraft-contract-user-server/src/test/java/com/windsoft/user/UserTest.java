@@ -5,8 +5,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.windsoft.kraft.contract.common.dto.UserDto;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
+import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.User;
 import com.windsoft.kraft.contract.server.user.UserServerApplication;
+import com.windsoft.kraft.contract.server.user.dto.AccountDto;
 import com.windsoft.kraft.contract.server.user.dto.UserListDto;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
 import com.windsoft.kraft.contract.server.user.mapper.UserMapper;
@@ -19,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -113,6 +116,19 @@ public class UserTest {
         user.setPassword("1234");
         user.setId(2l);
         System.out.println(userMapper.updatePassword(user));
+    }
+
+    @Test
+    public void accountDetailList(){
+        Long[] ids = {1L,2L,9L};
+        List<AccountDto> accountDtos = new ArrayList<>();
+        for (Long id : ids) {
+            JsonResult result = authService.getAccountDetail(id);
+            if (result.getCode() == 0){
+                accountDtos.add((AccountDto) result.getData());
+            }
+        }
+        System.out.println(accountDtos.size());
     }
 
 

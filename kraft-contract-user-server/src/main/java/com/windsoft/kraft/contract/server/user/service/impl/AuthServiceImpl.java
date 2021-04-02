@@ -5,9 +5,9 @@ import com.windsoft.kraft.contract.common.utils.JsonResult;
 import com.windsoft.kraft.contract.mybatis.domain.Student;
 import com.windsoft.kraft.contract.mybatis.domain.Teacher;
 import com.windsoft.kraft.contract.mybatis.domain.UserAuthentication;
+import com.windsoft.kraft.contract.mybatis.entity.InfoEntity;
 import com.windsoft.kraft.contract.server.user.dto.AuthAccountDto;
 import com.windsoft.kraft.contract.server.user.entity.AuthEntity;
-import com.windsoft.kraft.contract.mybatis.entity.InfoEntity;
 import com.windsoft.kraft.contract.server.user.mapper.StudentMapper;
 import com.windsoft.kraft.contract.server.user.mapper.TeacherMapper;
 import com.windsoft.kraft.contract.server.user.mapper.UserAuthenticationMapper;
@@ -96,6 +96,18 @@ public class AuthServiceImpl implements AuthService {
             return JsonResult.success("解绑成功");
         }
         return JsonResult.error("解绑失败");
+    }
+
+    @Override
+    public JsonResult getAccountDetail(Long id) {
+        Condition condition = new Condition(UserAuthentication.class);
+        Example.Criteria criteria = condition.createCriteria();
+        criteria.andEqualTo("userId",id);
+        UserAuthentication authentication = userAuthenticationMapper.selectOneByExample(condition);
+        if (authentication != null){
+            return JsonResult.success(userAuthenticationMapper.selectAccount(id, authentication.getIsStudent()));
+        }
+        return JsonResult.error("账号未绑定");
     }
 
 
