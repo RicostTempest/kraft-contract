@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -33,7 +34,7 @@ public class Project extends BaseEntity {
      * 项目经费
      */
     @Column(name = "funding")
-    private Long funding;
+    private BigDecimal funding;
 
     @Column(name = "`name`")
     private String name;

@@ -14,4 +14,10 @@
     <!--@mbg.generated generated on Fri Apr 02 16:47:35 CST 2021.-->
     id, create_time, update_time, project_id, amount
   </sql>
+    <delete id="updateFunding">
+      UPDATE kc_project
+      SET funding = #{amount}
+      WHERE
+      id = #{projectId}
+    </delete>
 </mapper>

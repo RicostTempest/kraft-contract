@@ -15,6 +15,7 @@ import com.windsoft.kraft.contract.mybatis.domain.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,7 +98,7 @@ public class ProjectUserController {
         Map map = (Map) JSONObject.parse(json);
         ProjectDto projectDto = JSON.parseObject((String) map.get("json"), ProjectDto.class);
         Project project = new Project();
-        project.setFunding(0L);
+        project.setFunding(new BigDecimal(0));
         project.setName(projectDto.getName());
         project.setProgress(0);
         JsonResult result = projectServer.add(project);

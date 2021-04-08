@@ -47,7 +47,7 @@ public class FileController {
         return resourceService.getResources(id);
     }
 
-    @GetMapping("resource/{resourceId}")
+    @GetMapping("funding/{resourceId}")
     public JsonResult getResource(@PathVariable("resourceId") Long id){
         return resourceService.getResourcesById(id);
     }

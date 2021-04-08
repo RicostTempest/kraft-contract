@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="m1616901901802" name="" targetNamespace="http://www.activiti.org/test" exporter="Camunda Modeler" exporterVersion="3.0.0">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="m1616901901802" name="" targetNamespace="http://www.activiti.org/test" exporter="Camunda Modeler" exporterVersion="3.0.0">
   <process id="projectCreated" name="项目申报" processType="None" isClosed="false" isExecutable="true">
     <startEvent id="_2" />
-    <userTask id="_3" name="负责人申请项目" activiti:assignee="${leader}" activiti:exclusive="true" />
-    <userTask id="_4" name="指导老师审核" activiti:candidateUsers="${adviser}" activiti:exclusive="true" />
-    <userTask id="_5" name="学院负责人审核" activiti:assignee="${college}" activiti:exclusive="true" />
-    <userTask id="_6" name="学校负责人审核" activiti:assignee="${school}" activiti:exclusive="true" />
+    <userTask id="_3" name="负责人申请项目" camunda:assignee="${leader}" />
+    <userTask id="_4" name="指导老师审核" camunda:candidateUsers="${adviser}" />
+    <userTask id="_5" name="学院负责人审核" camunda:assignee="${college}" />
+    <userTask id="_6" name="学校负责人审核" camunda:assignee="${school}" />
     <endEvent id="_7" />
     <sequenceFlow id="_8" sourceRef="_2" targetRef="_3" />
     <sequenceFlow id="_9" sourceRef="_3" targetRef="_4" />
@@ -16,7 +16,7 @@
   <bpmndi:BPMNDiagram id="Diagram-_1" name="New Diagram" documentation="background=#FFFFFF;count=1;horizontalcount=1;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0">
     <bpmndi:BPMNPlane bpmnElement="projectCreated">
       <bpmndi:BPMNShape id="Shape-_2" bpmnElement="_2">
-        <omgdc:Bounds x="183" y="206" width="32" height="32" />
+        <omgdc:Bounds x="183" y="218" width="32" height="32" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="179" y="81" width="53" height="14" />
         </bpmndi:BPMNLabel>
@@ -59,7 +59,7 @@
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge__8" bpmnElement="_8" sourceElement="Shape-_2" targetElement="Shape-_3">
-        <omgdi:waypoint x="199" y="206" />
+        <omgdi:waypoint x="199" y="218" />
         <omgdi:waypoint x="199" y="136" />
         <bpmndi:BPMNLabel>
           <omgdc:Bounds x="0" y="0" width="0" height="0" />

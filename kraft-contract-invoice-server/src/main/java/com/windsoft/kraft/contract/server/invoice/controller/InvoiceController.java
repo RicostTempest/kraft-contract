@@ -3,6 +3,7 @@ package com.windsoft.kraft.contract.server.invoice.controller;
 import com.alibaba.fastjson.JSON;
 import com.windsoft.kraft.contract.common.utils.CommonUtils;
 import com.windsoft.kraft.contract.common.utils.JsonResult;
+import com.windsoft.kraft.contract.mybatis.domain.ReimburseSheet;
 import com.windsoft.kraft.contract.server.invoice.dto.ReimburseSheetDto;
 import com.windsoft.kraft.contract.server.invoice.feign.FlowServer;
 import com.windsoft.kraft.contract.server.invoice.feign.ProjectUserServer;
@@ -53,5 +54,23 @@ public class InvoiceController {
     @GetMapping("sheet/{sheetId}/info")
     public JsonResult getReimburseSheet(@PathVariable("sheetId")Long id){
         return invoiceService.getSheetInfo(id);
+    }
+
+    @PostMapping("end/{sheetId}")
+    public JsonResult userFunding(@PathVariable("sheetId")Long id, @RequestBody ReimburseSheet sheet){
+        sheet.setId(id);
+        return invoiceService.updateFunding(sheet);
+    }
+
+    @DeleteMapping("remove/{invoiceId}/{sheetId}")
+    public JsonResult removeInvoiceFromSheet(@PathVariable("invoiceId")Long invoiceId,
+                                             @PathVariable("sheetId")Long sheetId){
+        return invoiceService.removeInvoiceSheet(sheetId,invoiceId);
+    }
+
+    @PostMapping("add/invoice/{sheetId}")
+    public JsonResult addInvoiceFromSheet(@PathVariable("sheetId")Long sheetId,
+                                          @RequestBody ReimburseSheetDto reimburseSheetDto){
+        return invoiceService.addInvoice(sheetId,reimburseSheetDto);
     }
 }
