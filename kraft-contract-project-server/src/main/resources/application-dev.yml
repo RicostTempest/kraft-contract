@@ -1,0 +1,30 @@
+server:
+  port: 9430
+spring:
+  application:
+    name: kraft-contract-project-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:18848
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/kc-manager?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 1722110122
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+
+mybatis:
+  type-aliases-package: com.windsoft.kraft.contract.server.project.domain
+  mapper-locations: classpath:mapper/*.xml
